@@ -38,8 +38,10 @@ body{
     height: 70px;
 }
 .disp{
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 45px;
     border: 2px solid black;
     margin-bottom: 10px;
@@ -50,3 +52,7 @@ body{
 .line-break {
     /* width: 100%; */
   }
+.clear{
+    width: 237px;
+    height: 35px;
+}
