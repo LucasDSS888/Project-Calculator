@@ -6,6 +6,19 @@ let operator;
 const display = document.querySelector('.disp');
 display.textContent = '';
 
+function cle(){
+    number1 = undefined;
+    number2 = undefined;
+    operator = undefined;
+}
+
+function cleErro(){
+    if(display.textContent == 'Error' || display.textContent == 'Infinity'){
+        display.textContent = '';
+        cle();
+    }
+}
+
 function add(a, b){
     return (a+b);
 }
@@ -16,8 +29,11 @@ function multiply(a, b){
     return a*b;
 }
 function divide(a, b){
+    if(a == 0 && b == 0){
+        return 'Error';
+    }
     if(b == 0){
-        return 'Infinity'
+        return 'Infinity';
     }
     return a/b;
 }
@@ -52,6 +68,7 @@ const numbers = document.querySelectorAll('.number');
 
 numbers.forEach(element => {
     element.addEventListener("click", () => {
+        cleErro();
         display.textContent = ''+display.textContent+element.innerText;
     })
 })
@@ -65,11 +82,16 @@ const br = document.createElement("br");
 
 symb.forEach(element => {
     element.addEventListener("click", () => {
+        cleErro();
         if(operator == undefined){
             number1 = display.innerText;
             operator = element.innerText;
-            display.textContent = '';
         }
+        console.log(display.textContent);
+        if(display.textContent == ''){
+             cle();
+        }
+        display.textContent = '';
     })
 })
 
@@ -77,20 +99,17 @@ const clear = document.querySelector('.clear');
 
 clear.addEventListener("click", () => {
     display.textContent = '';
-    number1 = undefined;
-    number2 = undefined;
-    operator = undefined;
+    cle();
 })
 
 const equals = document.querySelector('.equals');
 
 equals.addEventListener("click", () => {
+    cleErro();
     if(number1 != undefined){
         number2 = display.innerText;
         display.textContent = '';
         operate();
-        number1 = undefined;
-        number2 = undefined;
-        operator = undefined;
+        cle();
     }
 })
