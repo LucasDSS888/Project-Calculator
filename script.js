@@ -40,8 +40,8 @@ function divide(a, b){
 
 function operate(){
     
-    number1 = parseInt(number1, 10);
-    number2 = parseInt(number2, 10);
+    number1 = parseFloat(number1);
+    number2 = parseFloat(number2,);
 
     if(operator == '+'){
         display.textContent = '' + add(number1, number2);
@@ -82,12 +82,12 @@ const br = document.createElement("br");
 
 symb.forEach(element => {
     element.addEventListener("click", () => {
+        console.log(display.textContent);
         cleErro();
         if(operator == undefined){
             number1 = display.innerText;
             operator = element.innerText;
         }
-        console.log(display.textContent);
         if(display.textContent == ''){
              cle();
         }
@@ -111,5 +111,27 @@ equals.addEventListener("click", () => {
         display.textContent = '';
         operate();
         cle();
+    }
+})
+
+const del = document.querySelector('.del');
+
+del.addEventListener("click", () => {
+    cleErro();
+    let arr = [display.textContent];
+    let arrSpli = arr[0].split('');
+    arrSpli.pop();
+    arr = arrSpli.join('');
+    display.textContent = arr;
+})
+
+const dot = document.querySelector('.dot');
+let dots = 0;
+
+dot.addEventListener("click", () => {
+    cleErro();
+    if(dots == 0){
+        dots = 1;
+        display.textContent = ''+display.textContent+dot.innerText;
     }
 })

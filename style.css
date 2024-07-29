@@ -7,24 +7,29 @@ body{
 }
 
 .calculator{
-    width: 250px;
+    width: 300px;
+    height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 3px solid black;
+    padding: 3px;
 }
 .numbers{
-    
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 3px;
+    gap:3px;
 }
 .number{
     /* border: 1px solid red; */
-    font-size: 45px;
-    width: 47px;
+    /* flex: 1;
+    font-size: 45px; */
+    font-size: 24px;
+    width: 70px;
     height: 70px;
 }
 
@@ -33,9 +38,14 @@ body{
 .mult,
 .divi,
 .equals{
-    font-size: 45px;
+    /* font-size: 45px;
     width: 47px;
+    height: 70px; */
+    /* flex: 1; */
+    gap:3px;
+    width: 70px;
     height: 70px;
+    /* font-size: 45px; */
 }
 .disp{
     display: block;
@@ -46,13 +56,38 @@ body{
     border: 2px solid black;
     margin-bottom: 10px;
     margin-top: 5px;
-    width: 234px;
+    width: 295px;
     height: 82px;
 }
 .line-break {
     /* width: 100%; */
   }
 .clear{
-    width: 237px;
-    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    width: 144px;
+    height: 70px;
+    /* flex: 1;
+    gap:3px; */
+}
+.del{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex: 1;
+    gap:3px; */
+    font-size: 22px;
+    width: 70px;
+    height: 70px;
+}
+.equals{
+    width: 144px;
+    height: 70px;
+}
+.dot{
+    font-size: 24px;
+    width: 70px;
+    height: 70px; 
 }
