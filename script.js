@@ -1,6 +1,7 @@
 let number1;
 let number2;
 let operator;
+let charCode = 0;
 
 
 const display = document.querySelector('.disp');
@@ -14,7 +15,7 @@ function cle(){
 
 function cleErro(){
     if(display.textContent == 'Error' || display.textContent == 'Infinity'){
-        display.textContent = '';
+        display.value = '';
         cle();
     }
 }
@@ -44,17 +45,25 @@ function operate(){
     number2 = parseFloat(number2,);
 
     if(operator == '+'){
-        display.textContent = '' + add(number1, number2);
+        display.value = '' + add(number1, number2);
     }else if(operator == '-'){
-        display.textContent = '' + subtract(number1, number2);
+        display.value = '' + subtract(number1, number2);
     }else if(operator == '×'){
-        display.textContent = '' + multiply(number1, number2);
+        display.value = '' + multiply(number1, number2);
     }else if(operator == '÷'){
-        display.textContent = '' + divide(number1, number2);
+        display.value = '' + divide(number1, number2);
     }
 }
 
-
+function isNumberKey(evt) {
+    charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+      return false;
+    if(thereIsDot() && charCode == 46)
+        return false;
+    return true;
+    
+  }
 
 
 
@@ -69,7 +78,8 @@ const numbers = document.querySelectorAll('.number');
 numbers.forEach(element => {
     element.addEventListener("click", () => {
         cleErro();
-        display.textContent = ''+display.textContent+element.innerText;
+        // display.textContent = ''+display.textContent+element.innerText;
+        display.value = ''+display.value+element.innerText;
     })
 })
 
@@ -80,35 +90,36 @@ const br = document.createElement("br");
 
 
 
+
 symb.forEach(element => {
     element.addEventListener("click", () => {
-        console.log(display.textContent);
         cleErro();
         if(operator == undefined){
-            number1 = display.innerText;
+            number1 = display.value;
             operator = element.innerText;
         }
-        if(display.textContent == ''){
+        if(display.value == ''){
              cle();
         }
-        display.textContent = '';
+        display.value = '';
     })
 })
 
 const clear = document.querySelector('.clear');
 
 clear.addEventListener("click", () => {
-    display.textContent = '';
+    display.value = '';
     cle();
 })
+
 
 const equals = document.querySelector('.equals');
 
 equals.addEventListener("click", () => {
     cleErro();
     if(number1 != undefined){
-        number2 = display.innerText;
-        display.textContent = '';
+        number2 = display.value;
+        display.value = '';
         operate();
         cle();
     }
@@ -118,20 +129,29 @@ const del = document.querySelector('.del');
 
 del.addEventListener("click", () => {
     cleErro();
-    let arr = [display.textContent];
+    let arr = [display.value];
     let arrSpli = arr[0].split('');
     arrSpli.pop();
     arr = arrSpli.join('');
-    display.textContent = arr;
+    display.value = arr;
 })
 
+
+function thereIsDot(){
+    let arr = [display.value];
+    let arrSpli = arr[0].split('');
+    if(arrSpli.includes('.')){
+        return true;
+    }
+    return false;
+}
+
 const dot = document.querySelector('.dot');
-let dots = 0;
 
 dot.addEventListener("click", () => {
     cleErro();
-    if(dots == 0){
-        dots = 1;
-        display.textContent = ''+display.textContent+dot.innerText;
+    if(!(thereIsDot())){
+        display.value = ''+display.value+dot.innerText;
     }
 })
+
