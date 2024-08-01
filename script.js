@@ -57,6 +57,40 @@ function operate(){
 
 function isNumberKey(evt) {
     charCode = (evt.which) ? evt.which : evt.keyCode
+    console.log(charCode);
+    if(charCode == 47 || charCode == 42 || charCode == 43 || charCode == 45){
+        cleErro();
+        if(operator == undefined){
+            number1 = display.value;
+            switch(charCode) {
+                case 47:
+                    operator = '÷';
+                  break;
+                case 42:
+                    operator = '×';
+                  break;
+                case 43:
+                    operator = '+';
+                  break;
+                  case 45:
+                    operator = '-';
+                  break;
+              }
+        }
+        if(display.value == ''){
+             cle();
+        }
+        display.value = '';
+    }
+    if(charCode == 13){
+        cleErro();
+        if(number1 != undefined){
+            number2 = display.value;
+            display.value = '';
+            operate();
+            cle();
+        }
+    }
     if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
       return false;
     if(thereIsDot() && charCode == 46)
